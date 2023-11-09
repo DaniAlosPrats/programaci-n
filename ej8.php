@@ -9,6 +9,103 @@ function Numeropalabras( $texto){
 $resultado= Numeropalabras($texto);
 echo"el numero es $resultado";
 
+function Contarpalabras($texto){
+     $numpalabras = str_word_count($texto);
+     return $numpalabras;
+ }
+ $resul=Contarpalabras($texto);
+echo "la cantidad de palabras son:".$resul;
+
+function Contarfrases($texto){
+    $frases = preg_split('/[.!?]+', $texto, -1 PREG_SPLIT_NO_EMPTY);
+    $numfrases = count($frases);
+return $numfrases;
+}
+$resul2=Contarfrases($texto);   
+echo "<br> la cantidad de frases son :". $resul2;
+
+function Contarpragrafos($texto){
+    $parrafos = preg_split('/\R{2,}',$texto);
+    $numpragrafos = count($parrafos);
+    return $numpragrafos;
+}
+$resul3=Contarpragrafos($texto);
+echo "<br> la cantidad de pragrafos son : ". $resul3;
+
+function Medialetrasporpalabra($texto){
+    $words=str_word_count($texto,0);
+    $caracteres=strlen(preg_replace('/\s','', $texto));
+
+    if($words>0){
+        $media=$caracteres/$words;
+    }else{
+        $media="No hay letras en el texto";
+    }
+    return $media;
+}
+    $resul4=Medialetrasporpalabra($texto);
+    echo "<br> La media de letras por palbra es : ". $resul4;
+
+function Promediodepaalabrasporfrase($texto){
+    $frases= preg_split('/[.!?]+', $texto,-1 PREG_SPLIT_NO_EMPTY);
+    $numfras= count($frases);
+    $totalletra=0;
+    foreach($frases as $frase) {
+        $totalletra += str_word_count($frase);
+}
+if($numfras > 0){
+    $promedio=$totalletra/$numfras;
+} else{
+    $promedio="no hay frases";
+}
+return $promedio;
+}
+
+$resul5=Promediodepaalabrasporfrase($texto);
+echo "<br> El promedio de letras por frase es : ". $resul5;
+
+function promediofrasesenparrafos($texto){
+    $parrafo = preg_split('/\R{2,}',$texto)
+    $num_parrafo=count($parrafo);
+    $totalfra=0;
+    foreach ($parrafo as $parr) {
+        $fra= preg_split('/[.!?]+', $parrafo, -1, PREG_SPLIT_NO_EMPTY):
+        $total_fra += count($fra);
+}
+if($num_parrafo > 0){
+    $promediaf=$total_fra/$num_parrafo;
+} else{
+    $promediaf="no hay parrafos";
+}
+return $promediaf;
+}
+$resul6=promediofrasesenparrafos($texto);
+echo "<br> El promedio de frases por parrafo es: " . $resul6;
+
+function encotrarletra($texto){
+    $texto_nospace= str_replace(' ', '', $texto);
+    $letras=str_split($texto_nospace);
+    $contador_letras = array_count_values($letras);
+
+
+    $letra_moda= array_search(max($contador_letras), $contador_letras);
+    return $letra_moda;
+}
+$resul7= encotrarletra($texto);
+echo "<br>La letra mas repetida en el texto es: ". $resul7;
+
+function Palabramoda($texto){
+$palabras= str_word_count($texto,1);
+$palabras_cont= array_count_values($palabras);
+$palabra_masrepetida=array_search(max($palabras_cont), $palabras_cont); 
+return $palabra_masrepetida;
+}
+$resul8=Palabramoda($texto);
+echo "<br> La palabra mas repetida en el texto es: ". $resul8;
+
+
+
+
 
 
 ?>
